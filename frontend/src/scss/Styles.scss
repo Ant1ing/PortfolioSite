@@ -1,0 +1,402 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+$text: #F3FCFF;
+$text-hover: #d4dde0;
+$text-hover-light: #FFFF;
+$background: #252323;
+$primary: #5ac8f0;
+$secondary: #777FFF;
+$accent: #6a72e6;
+$foreground:#1d1b1b;
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: $background;
+    font-family: 'Raleway', sans-serif;
+    color:$text;
+    margin: 0;
+    padding: 0;
+    background-color: $background, 0.7;
+
+    .highlight {
+        color: $primary;
+    } 
+
+    .fullpage-wrapper {
+        width: 100%;
+        height: 100vh;
+        overflow: auto;
+        scroll-snap-type: y mandatory;
+    }
+      
+    .section {
+        height: 100vh;
+        scroll-snap-align: start;
+    }
+
+    .bg {
+        position: fixed;
+        top: -50%;
+        left: -50%;
+        right: -50%;
+        bottom: -50%;
+        width: 200%;
+        height: 200vh;
+        background: transparent url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
+        background-repeat: repeat;
+        animation: bg-animation .2s infinite;
+        opacity: .9;
+        visibility: visible;
+        z-index: -1;
+    }
+      
+    @keyframes bg-animation {
+          0% { transform: translate(0,0) }
+          10% { transform: translate(-5%,-5%) }
+          20% { transform: translate(-10%,5%) }
+          30% { transform: translate(5%,-10%) }
+          40% { transform: translate(-5%,15%) }
+          50% { transform: translate(-10%,5%) }
+          60% { transform: translate(15%,0) }
+          70% { transform: translate(0,10%) }
+          80% { transform: translate(-15%,0) }
+          90% { transform: translate(10%,5%) }
+          100% { transform: translate(5%,0) }
+    }
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    z-index: 9999;
+    min-height:60px;
+    width:100%; // Make the navbar full width
+    margin:0 auto;
+    display: flex;
+    justify-content: space-between; // Distribute items evenly
+    align-items: center; // Vertically align items
+    padding: 20px;
+    transition: background-color 0.3s ease;
+
+    @media (max-width: 800px) {
+        width:100%;
+        margin:0;
+        display:flex;
+        justify-content: space-between;
+    }
+  
+    &.scrolled {
+      background-color: $foreground;
+    }
+  
+    .navbar__links,
+    .navbar__button {
+        font-family: 'Raleway', sans-serif;
+        display: flex;
+        align-items: center;
+
+        @media (max-width: 800px) {
+            display: none; // Hide on small screens
+        }
+    }
+
+    .hamburger-menu {
+        display: none; // Hide by default
+        cursor: pointer;
+        position:relative;
+      
+        .hamburger-menu__line {
+            height:30px;
+            width:25px;
+
+          span {
+            margin:10px 0 0 0;
+            display: block;
+            position: absolute;
+            height: 3px;
+            width: 25px;
+            background: $secondary;
+            opacity: 1;
+            left: 0;
+            transform: rotate(0deg);
+            transition: .25s ease-in-out;
+            top: 0; // Adjust this as necessary
+      
+            &:nth-child(1) {
+                transform: rotate(0deg);
+                top:-10px;
+            }
+      
+            &:nth-child(2) {
+                left: 0px;
+            }
+      
+            &:nth-child(3) {
+                top: 10px;
+                transform: rotate(0deg);
+            }
+          }
+        }
+      
+        &.open {
+          .hamburger-menu__line {
+            span {
+              &:nth-child(1) {
+                transform: rotate(135deg);
+                top:0;
+              }
+      
+              &:nth-child(2) {
+                opacity: 0;
+                left: -60px;
+              }
+      
+              &:nth-child(3) {
+                top: 0;
+                transform: rotate(-135deg);
+              }
+            }
+          }
+        }
+      
+        @media (max-width: 800px) {
+          display: block; // Show on small screens
+        }
+      }
+      
+    .navbar__links--mobile {
+        max-height: 0;
+        opacity: 0;
+        transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        align-items: center; // Center align items
+        justify-content: space-around; // Equal spacing
+        position: absolute;
+        top: 102px;
+        left: 0;
+        width: 100vw;
+        background: $foreground;
+        padding: 20px 20px 30px 20px;
+        box-sizing: border-box;
+        transition: transform 0.3s ease-in-out;
+
+        button {
+            font-family: 'Raleway', sans-serif;
+            color:$text;
+            border:none;
+            display: block;
+            width: 100%; // Take up full width
+            text-align: center; // Center text
+            padding: 10px 0; // Add vertical padding
+            position: relative; // Add this
+            background:none;
+            cursor: pointer; // Add this
+          
+            &::after {
+              content: "";
+              position: absolute;
+              bottom: 0;
+              left: 50%;
+              width: 100%;
+              transform: translateX(-50%);
+              height: 1px;
+              background: radial-gradient(circle at center, $secondary, $foreground);
+            }
+          }
+
+        &.open {
+            max-height: none;
+            opacity: 1;
+
+            button {
+                margin-bottom: 0; // Remove bottom margin
+            }
+        }
+
+        @media (max-width: 800px) {
+            display: block;
+        }
+    }
+
+    .navbar__logo {
+      position: absolute; // Make the logo absolute
+      left: 50%; // Center it horizontally
+      transform: translateX(-50%) translateY(5px); // Adjust for its own width
+  
+        @media (max-width: 800px) {
+            position:static;
+            left:auto;
+            transform:none;
+        }
+
+        img {
+            width: 60px;
+            height: auto;
+        }
+    }
+  
+    .navbar__links {
+      justify-content: flex-start;
+      margin-left:40px;
+  
+      button {
+        font-family: 'Raleway', sans-serif;
+        color: $text;
+        background: none;
+        border: none;
+        margin-right: 20px;
+        cursor:pointer;
+  
+        &:hover {
+          color: $text-hover;
+        }
+      }
+    }
+  
+    .navbar__button {
+        justify-content: flex-end;
+        margin-right:40px;
+        
+        .attention-button {
+          position: relative;
+          background: transparent;
+          border: 2px solid;
+          border-image-slice: 1;
+          border-image-source: linear-gradient(to bottom, $primary, $secondary);
+          color: $text;
+          padding: 10px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+          overflow: hidden;
+          transition:transform 0.3s ease-in-out;
+
+
+          .email-icon{
+            margin-left:10px;
+            font-size:15px;
+          }
+    
+          &:before {
+            content: "";
+            position: absolute;
+            bottom: 0; // Start from the bottom
+            left: 0;
+            width: 100%;
+            height: 0; // Initial height is 0
+            background: linear-gradient(to bottom, $primary, $secondary);
+            transition: height 0.5s;
+            z-index: -1;
+          }
+    
+          &:hover {
+            color: $text-hover-light;
+            transform: scale(1.07);
+    
+            &:before {
+                height: 100%; // Fill up on hover
+            }
+          }
+        }
+    }
+  
+    .projects-dropdown {
+        display: flex;
+        align-items: center;
+    
+        .dropdown-button {
+            transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+            cursor: pointer;
+            margin:5px 0 0 -20px;
+    
+            img {
+                width: 14px;
+                height: auto;
+            }
+
+            &:hover {
+                filter: brightness(0.8); // Darken on hover
+            }
+
+            &.open {
+                transform: rotate(180deg) translateY(5px); // Flip when open
+            }
+        }
+
+      .dropdown-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-out;
+        display: none;
+        position: absolute;
+        background-color: $foreground;
+        top:70px;
+        min-width: 200px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        padding: 12px 16px;
+        z-index: 1;
+  
+        a {
+          color: $text;
+          background: none;
+          border: none;
+          display: block;
+          font-size: 12px;
+          text-decoration: none;
+          text-align: left;
+          width: 100%;
+          padding: 10px 0;
+  
+          &:hover {
+            color: $text-hover;
+          }
+        }
+
+        button{
+            color: $primary;
+            background: none;
+            border: none;
+            display: block;
+            font-size: 12px;
+            text-decoration: none;
+            text-align: left;
+            width: 100%;
+            padding: 10px 0;
+            cursor: pointer;
+    
+            &:hover {
+              color: $secondary;
+            }
+        
+        }
+      }
+  
+      &.open .dropdown-content {
+        display: block;
+        max-height:500px;
+      }
+    }
+}
+
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    .hero-content {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 50%; // Adjust as needed
+      text-align: center;
+    }
+}
