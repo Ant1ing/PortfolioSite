@@ -1,6 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faTwitter, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { useState } from 'react';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 function AboutMe() {
   const [isTextExpanded, setTextExpanded] = useState(false);
@@ -38,9 +40,10 @@ function AboutMe() {
                     </a>
                 </div>
                 <div className="navbar__button right-aligned">
-                    <button className="read-more">
-                    <span>View More</span>
-                    </button>
+                    <Link to="/aboutme" className="read-more">
+                        <span className="button-text">View More</span>
+                        <FontAwesomeIcon icon={faArrowRight} />
+                    </Link>
                 </div>
             </div>
         </div>

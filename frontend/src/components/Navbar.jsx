@@ -81,7 +81,7 @@ function Navbar() {
         </div>
       </div>
       <div className={`navbar__links--mobile ${isHamburgerOpen ? 'open' : ''}`} style={{display: isHamburgerOpen ? 'block' : 'none'}}>
-        <button onClick={() => scrollToSection('about-me')}>About Me</button>
+        <button onClick={() => scrollToSection('aboutMe')}>About Me</button>
         <button onClick={() => scrollToSection('skills')}>Skills</button>
         <button onClick={() => scrollToSection('projects')}>Projects</button>
         <button onClick={() => scrollToSection('contact')}>Contact</button>

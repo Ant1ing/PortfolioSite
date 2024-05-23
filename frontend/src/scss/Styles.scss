@@ -30,6 +30,25 @@ body {
     .highlight {
         color: $primary;
     } 
+
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: $foreground;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      transition: transform 0.5s ease-in-out;
+      z-index: 9999;
+    }
+    
+    .slide-down {
+      transform: translateY(100%);
+    }
   }
 
 
@@ -39,7 +58,7 @@ body {
 .navbar {
     position: fixed;
     top: 0;
-    z-index: 9999;
+    z-index: 9998;
     min-height:60px;
     width:100%; // Make the navbar full width
     margin:0 auto;
@@ -146,7 +165,7 @@ body {
         align-items: center; // Center align items
         justify-content: space-around; // Equal spacing
         position: absolute;
-        top: 102px;
+        top: 108px;
         left: 0;
         width: 100vw;
         background: $foreground;
@@ -180,7 +199,7 @@ body {
 
         &.open {
             max-height: none;
-            opacity: 1;
+            opacity: 0.8;
 
             button {
                 margin-bottom: 0; // Remove bottom margin
@@ -635,6 +654,7 @@ body {
       margin: 0;
     
       @media (max-width: 1000px) {
+        margin-top:70px;
         top: 20px; /* Position at the top */
         left: 52%; /* Center horizontally */
         transform: translateX(-50%); /* Adjust for the width of the element */
@@ -661,19 +681,28 @@ body {
     }
   
     h1 {
-      font-size: 4em;
+      font-size: 4.5em;
       margin: 10px 0 0 0;
+
+      @media (max-height: 700px) {
+        padding-top:50px;
+      }
       
       @media (max-width: 1200px) {
         margin-top:10%;
         font-size: 3.5em;
       }
+
+      @media (max-width: 1000px) {
+        margin-top:20px;
+        font-size: 3em;
+      }
     }
   
     .AboutMeText {
-      max-width:80%;
+      max-width:90%;
       font-size:14px;
-      margin-left: 0; /* Removes the left margin */
+      margin: 10px 0 0 0; /* Removes the left margin */
 
       @media (max-width: 1000px) {
         display:none;
@@ -681,13 +710,24 @@ body {
     }
   
     hr {
+      position:relative;
+      margin:20px 0 20px 0;
       border: none; /* Removes the default border */
-      height: 3px; /* Sets the height */
-      background: linear-gradient(to right, $primary, $secondary), /* Creates a gradient from $primary to $secondary */
-                   linear-gradient(to right, transparent, $background); /* Creates a gradient from transparent to $background */
+      height: 5px; /* Sets the height */
+      background: linear-gradient(to right, $primary, $secondary); /* Creates a gradient from $primary to $secondary */
       background-size: 100% 50%; /* Sizes the backgrounds */
       background-repeat: no-repeat; /* Prevents the backgrounds from repeating */
       background-position: bottom, top; /* Positions the backgrounds */
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(to right, transparent, $background); /* Adjust the color and opacity as needed */
+      }
     }
   
     .bottom-section {
@@ -698,7 +738,7 @@ body {
         margin:0;
       }
 
-      @media (max-width: 350px) {
+      @media (max-width: 400px) {
         flex-direction: column;
         align-items: center;
       }
@@ -707,7 +747,12 @@ body {
         display: flex;
         align-items:flex-start;
         width: 50%; /* Takes up half the width of the bottom div */
-        margin:10px 0 0 0;
+        margin:5px 0 0 0;
+
+        @media (max-width: 400px) {
+          justify-content: space-around;
+          width:100%;
+        }
         
         a{
           color:$text;
@@ -717,7 +762,7 @@ body {
           }
         }
 
-        @media (max-width: 350px) {
+        @media (max-width: 400px) {
           margin-top:0;
           margin-bottom:20px;
         }
@@ -743,10 +788,18 @@ body {
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
-        margin: 4px 2px;
         cursor: pointer;
         overflow: hidden;
         transition:transform 0.3s ease-in-out;
+        margin:0 40px 0 0;
+
+        @media (max-width: 1000px) {
+          margin:0;
+        }
+
+        .button-text{
+          margin-right:10px;
+        }
 
         &:before {
           content: "";
