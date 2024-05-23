@@ -1,20 +1,22 @@
 // import React from 'react';
+import HeroSec from "../components/HomePage/HeroSec";
 import Navbar from "../components/Navbar";
-// import HeroSec from "../components/HomePage/HeroSec";
+import CVDownload from "../components/CVDownload";
+import Footer from "../components/Footer";
+import AboutMe from "../components/HomePage/AboutMe";
 
 const HomePage = () => {
   return (
     <div className="fullpage-wrapper">
-      <div className="section">
-          <Navbar />
-      </div>
-      <div className="section">
-        {/* Your second section component */}
-      </div>
-      <div className="section">
-        {/* Your third section component */}
-      </div>
-      {/* Add more divs as needed */}
+      <Navbar />
+      <CVDownload />
+      <HeroSec />
+      <section id="aboutMe">
+        <div id="nextSection">
+          <AboutMe />
+        </div>
+      </section>
+      <Footer />
     </div>
   );
 };

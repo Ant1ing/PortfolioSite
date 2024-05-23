@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope} from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
 function Navbar() {
@@ -52,7 +52,7 @@ function Navbar() {
   return (
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="navbar__links left-aligned">
-        <button onClick={() => scrollToSection('about-me')}>About Me</button>
+        <button onClick={() => scrollToSection('aboutMe')}>About Me</button>
         <button onClick={() => scrollToSection('skills')}>Skills</button>
         <div className={`projects-dropdown ${isDropdownOpen ? 'open' : ''}`}>
           <button onClick={() => scrollToSection('projects')}>Projects</button>

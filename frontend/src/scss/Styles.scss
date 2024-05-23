@@ -9,12 +9,18 @@ $secondary: #777FFF;
 $accent: #6a72e6;
 $foreground:#1d1b1b;
 
+$stars-count: 500;
+$star-size: random(3) + 1;
+$star-color: #f3fcff;
+$starry-background-color: #252323;
+
+
 * {
     box-sizing: border-box;
 }
 
 body {
-    background-color: $background;
+    min-height: 200vh;
     font-family: 'Raleway', sans-serif;
     color:$text;
     margin: 0;
@@ -24,49 +30,11 @@ body {
     .highlight {
         color: $primary;
     } 
+  }
 
-    .fullpage-wrapper {
-        width: 100%;
-        height: 100vh;
-        overflow: auto;
-        scroll-snap-type: y mandatory;
-    }
-      
-    .section {
-        height: 100vh;
-        scroll-snap-align: start;
-    }
 
-    .bg {
-        position: fixed;
-        top: -50%;
-        left: -50%;
-        right: -50%;
-        bottom: -50%;
-        width: 200%;
-        height: 200vh;
-        background: transparent url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
-        background-repeat: repeat;
-        animation: bg-animation .2s infinite;
-        opacity: .9;
-        visibility: visible;
-        z-index: -1;
-    }
-      
-    @keyframes bg-animation {
-          0% { transform: translate(0,0) }
-          10% { transform: translate(-5%,-5%) }
-          20% { transform: translate(-10%,5%) }
-          30% { transform: translate(5%,-10%) }
-          40% { transform: translate(-5%,15%) }
-          50% { transform: translate(-10%,5%) }
-          60% { transform: translate(15%,0) }
-          70% { transform: translate(0,10%) }
-          80% { transform: translate(-15%,0) }
-          90% { transform: translate(10%,5%) }
-          100% { transform: translate(5%,0) }
-    }
-}
+
+// General Styles for components outwith certain pages.
 
 .navbar {
     position: fixed;
@@ -89,7 +57,9 @@ body {
     }
   
     &.scrolled {
-      background-color: $foreground;
+      max-width: 100%;
+      background-color: rgba($foreground, 0.8);
+      margin: auto;
     }
   
     .navbar__links,
@@ -297,6 +267,7 @@ body {
           }
     
           &:hover {
+            font-family: 'Raleway', sans-serif;
             color: $text-hover-light;
             transform: scale(1.07);
     
@@ -385,18 +356,430 @@ body {
     }
 }
 
-.hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  
-    .hero-content {
+.cv-download {
+  z-index: 4;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+
+  .rotating-image {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    animation: rotation 7s infinite linear;
+  }
+
+  a{
+    z-index: 5;
+    color: $accent;
+    font-size: 24px;
+    margin-right:23px;
+    margin-bottom:13px;
+    cursor:pointer;
+  }
+
+
+  @keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
+}
+
+
+
+.hero-section-top{
+  .hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh; // Adjust this to the height of your hero section
+    background-color: #252323;
+    overflow: hidden;
+
+    .star {
+      position: absolute;
+      background-color: #f3fcff;
+      border-radius: 2px;
+      width: 0.5px; // Adjust this to change the size of the stars
+      height: 0.5px; // Adjust this to change the size of the stars
+      transform: rotate(45deg); // Rotate the square to create a diamond shape
+      animation: star-flicker 2s linear infinite;
+      animation-delay: inherit;
+      transition: top 0.5s, left 0.5s; // Add this line
+
+      @keyframes star-flicker {
+        0%, 100% {
+          opacity: 0.05; // Minimum brightness
+        }
+        50% {
+          opacity: 0.5; // Maximum brightness
+        }
+      }
+    }
+    .overlay {
+      z-index: 2;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 50%;
+      height: 50%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle at center, rgba(37, 35, 35, 1) 50%, transparent 100%);
+      pointer-events: none; // This allows mouse events to pass through the overlay
+    }
+    
+    .hero-section__content {
+      z-index: 3;
       position: relative;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      height: 50%; // Adjust as needed
+      justify-content: center;
+      align-items: center;
+      height: 100vh; // This will make it take up the full height of the viewport
       text-align: center;
+    
+      .hero-subheading {
+        font-size: 1.7em; // Adjust as needed
+        margin:0;
+      }
+
+      .top-text {
+        font-weight:700;
+        position:absolute;
+        top: 38%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        @media (max-width: 1000px) {
+          position:initial;
+          top:0;
+          left:0;
+          transform:none;
+        }
+      }
+
+      .bottom-text{
+        font-weight:700;
+        font-family: 'Raleway', sans-serif;
+        font-size: 1.5em; // Adjust as needed
+        margin:0;
+
+
+        @media (max-width: 900px) {
+          padding-top:10px;
+        }
+      }
+    
+      .hero-header {
+        margin: 0;
+        font-size: 7em; // Adjust as needed
+        background: linear-gradient(to bottom, $primary, $secondary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: #252323;
+        -webkit-text-stroke: 3px transparent; // Adjust stroke width as needed
+        color: none;
+
+        @media (max-width: 900px) {
+          font-size: 4em;
+        }
+      }
+
+        @keyframes scroll {
+          0% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(10px);
+          }
+          100% {
+            transform: translateY(0);
+          }
+        }
+      }
+
+      .hero-section__scroll{
+        z-index: 3;
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 1.5em;
+        color: $text;
+        cursor: pointer;
+        animation: scroll 1s infinite;
+        transition: color 0.3s ease-in-out;
     }
+  }
 }
+
+.split-section {
+  background-color: $background;
+  display: flex;
+  min-height: 100vh;
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+  }
+
+  .text-side, .image-side {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: 1000px) {
+      width: 100%;
+      flex-direction: column;
+      margin:auto;
+    }
+  }
+
+  .image-side img {
+    margin-top:80px;
+    width:80%;
+    height: auto;
+
+    @media (max-width: 1100px) {
+      width: 100%;
+      margin:0;
+    }
+  }
+
+  .text-side {
+    position: relative;
+    padding: 50px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* Aligns items to the left */
+    text-align: left;
+    margin: 0 70px;
+
+    @media (max-width: 1000px) {
+      align-items: center; /* Center-aligns items */
+      text-align: center; /* Center-aligns text */
+      margin:0;
+      margin-top: 40px; /* Adds spacing above */
+      width: 100%; /* Sets the width to 90% */
+    }
+
+    .header-highlight {
+      background: linear-gradient(to bottom, $primary, $secondary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .text-collapsed {
+      display:none;
+      white-space: wrap;
+      max-width: 1000px; /* Adjust as needed */
+
+      @media (max-width: 1000px) {
+        display:block;
+      }
+    }
+
+    .textExpander{
+      display: none;
+      
+
+      @media (max-width: 1000px) {
+        font-family: 'Raleway', sans-serif;
+        display: flex;
+        align-items: center;
+        background: transparent;
+        border: 2px solid;
+        border-image-slice: 1;
+        border-image-source: linear-gradient(to bottom, $primary, $secondary);
+        color: $text;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer; /* Show the button when the view width is 1000px or smaller */
+      }
+
+      &:hover {
+        color: $text-hover;
+      }
+    }
+    
+    .text-expanded {
+      max-width: 100%; /* Adjust as needed */
+      display: none;
+
+      @media (max-width: 1000px) {
+        display:block;
+      }
+    }
+  
+    .tag {
+      position: absolute;
+      top: 110px;
+      left: 0;
+      background: linear-gradient(to bottom, $primary, $secondary);
+      padding: 3px;
+      border-radius: 2px;
+      margin: 0;
+    
+      @media (max-width: 1000px) {
+        top: 20px; /* Position at the top */
+        left: 52%; /* Center horizontally */
+        transform: translateX(-50%); /* Adjust for the width of the element */
+      }
+    
+      .tagP {
+        font-family: 'Raleway', sans-serif;
+        font-size: 10px;
+        font-weight: 800;
+        margin: 0;
+        color: $background;
+        text-wrap: nowrap;
+      }
+    }
+  
+    h1, .AboutMeText, hr, .bottom-section {
+      width: 100%;
+      text-wrap: wrap; /* Ensures these elements take up the full width of .text-side */
+      
+      @media (max-width: 1000px) {
+        margin:20px;
+        
+      }
+    }
+  
+    h1 {
+      font-size: 4em;
+      margin: 10px 0 0 0;
+      
+      @media (max-width: 1200px) {
+        margin-top:10%;
+        font-size: 3.5em;
+      }
+    }
+  
+    .AboutMeText {
+      max-width:80%;
+      font-size:14px;
+      margin-left: 0; /* Removes the left margin */
+
+      @media (max-width: 1000px) {
+        display:none;
+      }
+    }
+  
+    hr {
+      border: none; /* Removes the default border */
+      height: 3px; /* Sets the height */
+      background: linear-gradient(to right, $primary, $secondary), /* Creates a gradient from $primary to $secondary */
+                   linear-gradient(to right, transparent, $background); /* Creates a gradient from transparent to $background */
+      background-size: 100% 50%; /* Sizes the backgrounds */
+      background-repeat: no-repeat; /* Prevents the backgrounds from repeating */
+      background-position: bottom, top; /* Positions the backgrounds */
+    }
+  
+    .bottom-section {
+      display: flex;
+      justify-content: space-between;
+
+      @media (max-width: 1000px) {
+        margin:0;
+      }
+
+      @media (max-width: 350px) {
+        flex-direction: column;
+        align-items: center;
+      }
+  
+      .social-media {
+        display: flex;
+        align-items:flex-start;
+        width: 50%; /* Takes up half the width of the bottom div */
+        margin:10px 0 0 0;
+        
+        a{
+          color:$text;
+
+          &:hover {
+            color: $text-hover;
+          }
+        }
+
+        @media (max-width: 350px) {
+          margin-top:0;
+          margin-bottom:20px;
+        }
+
+        .twitter-logo,
+        .linkedin-logo {
+          margin-left: 20px; /* Adjust as needed */
+        }
+      }
+    
+      .read-more {
+        font-family: 'Raleway', sans-serif;
+        display: flex;
+        align-items: center;
+        position: relative;
+        background: transparent;
+        border: 2px solid;
+        border-image-slice: 1;
+        border-image-source: linear-gradient(to bottom, $primary, $secondary);
+        color: $text;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        overflow: hidden;
+        transition:transform 0.3s ease-in-out;
+
+        &:before {
+          content: "";
+          position: absolute;
+          bottom: 0; // Start from the bottom
+          left: 0;
+          width: 100%;
+          height: 0; // Initial height is 0
+          background: linear-gradient(to bottom, $primary, $secondary);
+          transition: height 0.5s;
+          z-index: -1;
+        }
+  
+        &:hover {
+          font-family: 'Raleway', sans-serif;
+          color: $text-hover-light;
+          transform: scale(1.07);
+  
+          &:before {
+              height: 100%; // Fill up on hover
+          }
+        }
+      }
+    }
+    
+    @media (max-width: 1000px) {
+      flex-direction: column;
+    
+      .text-side, .image-side {
+        width: 100%;
+      }
+    }
+  }
+}
+
+
