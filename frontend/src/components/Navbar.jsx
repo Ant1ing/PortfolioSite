@@ -70,7 +70,7 @@ function Navbar() {
       </div>
       <div className="navbar__logo center-aligned">
         <a href="#">
-          <img src="../images/PortfolioLogo.png" alt="Logo" />
+          <img src="../images/PortfolioLogoLong.png" alt="Logo" />
         </a>
       </div>
       <div className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''}`} onClick={toggleHamburgerMenu}>

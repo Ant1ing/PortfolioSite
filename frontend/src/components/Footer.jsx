@@ -1,27 +1,40 @@
 // import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub, faTwitter, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { Link } from 'react-router-dom';
 
+
 const Footer = () => {
+
+  const scrollToSection = (id) => {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <footer>
+      <div className="top-section-footer">
       <div className="logo-section">
-        <img src="path-to-your-logo.png" alt="Logo" />
+        <a href="#">
+          <img src="../images/PortfolioLogo.png" alt="Logo" />
+        </a>
       </div>
 
-      <div className="links-section">
-        <Link to="/home" className="active">Home</Link>
-        <Link to="/about">About</Link>
-        <Link to="/contact">Contact</Link>
-        {/* Add more links as needed */}
-      </div>
+        <div className="links-section">
+          <button onClick={() => scrollToSection('aboutMe')}>About Me</button>
+          <button onClick={() => scrollToSection('skills')}>Skills</button>
+          <button onClick={() => scrollToSection('projects')}>Projects</button>
+          <Link to="/contact">
+            <button>Contact</button>
+          </Link>
+        </div>
 
-      <div className="social-media-section">
-        <a href="your-facebook-url"><img src="facebook-icon.png" alt="Facebook" /></a>
-        <a href="your-twitter-url"><img src="twitter-icon.png" alt="Twitter" /></a>
-        <a href="your-instagram-url"><img src="instagram-icon.png" alt="Instagram" /></a>
-        {/* Add more social media links as needed */}
+        <div className="social-media-section">
+          <a href="https://github.com/Ant1ing"><FontAwesomeIcon icon={faGithub} /></a>
+          <a href="https://x.com/Dev_CamTech"><FontAwesomeIcon icon={faTwitter} /></a>
+          <a href="https://www.linkedin.com/in/cameron-jenkins-775385250/"><FontAwesomeIcon icon={faLinkedin} /></a>
+        </div>
       </div>
-
+      
       <hr />
 
       <div className="bottom-section">
