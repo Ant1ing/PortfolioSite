@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import CVDownload from "../components/CVDownload";
 import Footer from "../components/Footer";
 import AboutMe from "../components/HomePage/AboutMe";
+import Skill from "../components/HomePage/Skill";
 import { useState, useEffect } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 
@@ -34,6 +35,11 @@ const HomePage = () => {
         <section id="aboutMe">
           <div id="nextSection">
             <AboutMe />
+          </div>
+        </section>
+        <section id="skills">
+          <div id="nextSection">
+            <Skill />
           </div>
         </section>
         <Footer />

@@ -14,10 +14,10 @@ function AboutMe() {
 
   return (
     <div className="split-section">
-        <div className="text-side">
-            <div className="tag">
+        <div className="tag">
                 <p className="tagP">ABOUT ME</p>
             </div>
+        <div className="text-side">
             <h1>Get To Know <span className="header-highlight">Me</span></h1>
             <p className={isTextExpanded ? 'text-expanded' : 'text-collapsed'}>
                 {isTextExpanded ? text : shortText}
