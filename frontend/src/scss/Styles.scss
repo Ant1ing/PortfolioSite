@@ -60,7 +60,6 @@ body {
 }
 
 
-
 // General Styles for components outwith certain pages.
 
 .navbar {
@@ -68,11 +67,11 @@ body {
     top: 0;
     z-index: 9998;
     min-height:60px;
-    width:100%; // Make the navbar full width
+    width:100%; 
     margin:0 auto;
     display: flex;
-    justify-content: space-between; // Distribute items evenly
-    align-items: center; // Vertically align items
+    justify-content: space-between; 
+    align-items: center; 
     padding: 20px;
     transition: background-color 0.3s ease;
 
@@ -96,12 +95,12 @@ body {
         align-items: center;
 
         @media (max-width: 800px) {
-            display: none; // Hide on small screens
+            display: none; 
         }
     }
 
     .hamburger-menu {
-        display: none; // Hide by default
+        display: none; 
         cursor: pointer;
         position:relative;
       
@@ -120,7 +119,7 @@ body {
             left: 0;
             transform: rotate(0deg);
             transition: .25s ease-in-out;
-            top: 0; // Adjust this as necessary
+            top: 0; 
       
             &:nth-child(1) {
                 transform: rotate(0deg);
@@ -160,7 +159,7 @@ body {
         }
       
         @media (max-width: 800px) {
-          display: block; // Show on small screens
+          display: block; 
         }
       }
       
@@ -170,8 +169,8 @@ body {
         transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
         display: flex;
         flex-direction: column;
-        align-items: center; // Center align items
-        justify-content: space-around; // Equal spacing
+        align-items: center; 
+        justify-content: space-around; 
         position: absolute;
         top: 108px;
         left: 0;
@@ -186,12 +185,12 @@ body {
             color:$text;
             border:none;
             display: block;
-            width: 100%; // Take up full width
-            text-align: center; // Center text
-            padding: 10px 0; // Add vertical padding
-            position: relative; // Add this
+            width: 100%; 
+            text-align: center; 
+            padding: 10px 0; 
+            position: relative; 
             background:none;
-            cursor: pointer; // Add this
+            cursor: pointer; 
           
             &::after {
               content: "";
@@ -212,7 +211,7 @@ body {
           top:85px;
 
           button {
-                margin-bottom: 0; // Remove bottom margin
+                margin-bottom: 0; 
           }
         }
 
@@ -222,9 +221,9 @@ body {
     }
 
     .navbar__logo {
-      position: absolute; // Make the logo absolute
-      left: 50%; // Center it horizontally
-      transform: translateX(-50%) translateY(5px); // Adjust for its own width
+      position: absolute; 
+      left: 50%; 
+      transform: translateX(-50%) translateY(5px); 
   
         @media (max-width: 800px) {
             position:static;
@@ -286,10 +285,10 @@ body {
           &:before {
             content: "";
             position: absolute;
-            bottom: 0; // Start from the bottom
+            bottom: 0; 
             left: 0;
             width: 100%;
-            height: 0; // Initial height is 0
+            height: 0; 
             background: linear-gradient(to bottom, $primary, $secondary);
             transition: height 0.5s;
             z-index: -1;
@@ -301,7 +300,7 @@ body {
             transform: scale(1.07);
     
             &:before {
-                height: 100%; // Fill up on hover
+                height: 100%; 
             }
           }
         }
@@ -322,11 +321,11 @@ body {
             }
 
             &:hover {
-                filter: brightness(0.8); // Darken on hover
+                filter: brightness(0.8); 
             }
 
             &.open {
-                transform: rotate(180deg) translateY(5px); // Flip when open
+                transform: rotate(180deg) translateY(5px); 
             }
         }
 
@@ -516,10 +515,19 @@ footer {
   .bottom-section {
     display: flex;
     justify-content: space-between;
-    margin: 0 100px;
+    width:87%;
+    margin:0 auto;
 
     .left, .right {
-      color:$text-hover;
+      p {
+        color:$text;
+        text-decoration: underline;
+        cursor:pointer;
+
+        &:hover {
+          color: $text-hover;
+        }
+      }
     }
   }
 
@@ -539,7 +547,7 @@ footer {
   .hero-section {
     position: relative;
     width: 100%;
-    height: 100vh; // Adjust this to the height of your hero section
+    height: 100vh; 
     background-color: #252323;
     overflow: hidden;
 
@@ -547,19 +555,19 @@ footer {
       position: absolute;
       background-color: #f3fcff;
       border-radius: 2px;
-      width: 0.5px; // Adjust this to change the size of the stars
-      height: 0.5px; // Adjust this to change the size of the stars
-      transform: rotate(45deg); // Rotate the square to create a diamond shape
+      width: 0.5px; 
+      height: 0.5px; 
+      transform: rotate(45deg); 
       animation: star-flicker 2s linear infinite;
       animation-delay: inherit;
-      transition: top 0.5s, left 0.5s; // Add this line
+      transition: top 0.5s, left 0.5s; 
 
       @keyframes star-flicker {
         0%, 100% {
-          opacity: 0.05; // Minimum brightness
+          opacity: 0; 
         }
         50% {
-          opacity: 0.5; // Maximum brightness
+          opacity: 0.5; 
         }
       }
     }
@@ -572,7 +580,7 @@ footer {
       height: 50%;
       transform: translate(-50%, -50%);
       background: radial-gradient(circle at center, rgba(37, 35, 35, 1) 50%, transparent 100%);
-      pointer-events: none; // This allows mouse events to pass through the overlay
+      pointer-events: none; 
     }
     
     .hero-section__content {
@@ -583,11 +591,11 @@ footer {
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh; // This will make it take up the full height of the viewport
+      height: 100vh; 
       text-align: center;
     
       .hero-subheading {
-        font-size: 1.7em; // Adjust as needed
+        font-size: 1.7em; 
         margin:0;
       }
 
@@ -609,7 +617,7 @@ footer {
       .bottom-text{
         font-weight:700;
         font-family: 'Raleway', sans-serif;
-        font-size: 1.5em; // Adjust as needed
+        font-size: 1.5em; 
         margin:0;
         padding-top:10px;
 
@@ -621,11 +629,11 @@ footer {
     
       .hero-header {
         margin: 0;
-        font-size: 7em; // Adjust as needed
+        font-size: 7em; 
         background: linear-gradient(to bottom, $primary, $secondary);
         -webkit-background-clip: text;
         -webkit-text-fill-color: #252323;
-        -webkit-text-stroke: 3px transparent; // Adjust stroke width as needed
+        -webkit-text-stroke: 3px transparent; 
         color: none;
 
         @media (max-width: 900px) {
@@ -684,14 +692,14 @@ footer {
     margin: 0;
   
     @media (max-width: 1000px) {
-      position: static; // Reset the position
-      top: auto; // Reset the top
-      left: auto; // Reset the left
-      transform: none; // Reset the transform
+      position: static; 
+      top: auto; 
+      left: auto; 
+      transform: none; 
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 110px auto 20px auto; // Adjust as needed
+      margin: 110px auto 20px auto; 
     }
   
     .tagP {
@@ -757,21 +765,21 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start; /* Aligns items to the left */
+    align-items: flex-start; 
     text-align: left;
     margin: 0 30px;
 
     @media (max-width: 1000px) {
-      align-items: center; /* Center-aligns items */
-      text-align: center; /* Center-aligns text */
-      margin: 40px 0 40px 0; /* Adds spacing above */
-      width: 100%; /* Sets the width to 90% */
+      align-items: center; 
+      text-align: center; 
+      margin: 40px 0 40px 0; 
+      width: 100%; 
     }
 
     .text-collapsed {
       display:none;
       white-space: wrap;
-      max-width: 1000px; /* Adjust as needed */
+      max-width: 1000px; 
 
       @media (max-width: 1000px) {
         display:block;
@@ -797,7 +805,7 @@ footer {
         display: inline-block;
         font-size: 16px;
         margin: 4px 2px;
-        cursor: pointer; /* Show the button when the view width is 1000px or smaller */
+        cursor: pointer; 
       }
 
       &:hover {
@@ -806,7 +814,7 @@ footer {
     }
     
     .text-expanded {
-      max-width: 100%; /* Adjust as needed */
+      max-width: 100%; 
       display: none;
 
       @media (max-width: 1000px) {
@@ -816,7 +824,7 @@ footer {
   
     h1, .AboutMeText, hr, .bottom-section {
       width: 100%;
-      text-wrap: wrap; /* Ensures these elements take up the full width of .text-side */
+      text-wrap: wrap; 
       
       @media (max-width: 1000px) {
         margin:20px;
@@ -844,7 +852,7 @@ footer {
     .AboutMeText {
       max-width:90%;
       font-size:16px;
-      margin: 10px 0 0 0; /* Removes the left margin */
+      margin: 10px 0 0 0; 
 
       @media (max-width: 1000px) {
         display:none;
@@ -854,12 +862,12 @@ footer {
     hr {
       position:relative;
       margin:20px 0 20px 0;
-      border: none; /* Removes the default border */
-      height: 5px; /* Sets the height */
-      background: linear-gradient(to right, $primary, $secondary); /* Creates a gradient from $primary to $secondary */
-      background-size: 100% 50%; /* Sizes the backgrounds */
-      background-repeat: no-repeat; /* Prevents the backgrounds from repeating */
-      background-position: bottom, top; /* Positions the backgrounds */
+      border: none; 
+      height: 5px; 
+      background: linear-gradient(to right, $primary, $secondary); 
+      background-size: 100% 50%; 
+      background-repeat: no-repeat; 
+      background-position: bottom, top;
 
       &:before {
         content: "";
@@ -868,7 +876,7 @@ footer {
         left: 0;
         width: 100%;
         height: 5px;
-        background: linear-gradient(to right, transparent, $background); /* Adjust the color and opacity as needed */
+        background: linear-gradient(to right, transparent, $background); 
       }
 
       @media (max-width: 1000px) {
@@ -894,7 +902,7 @@ footer {
       .social-media {
         display: flex;
         align-items:flex-start;
-        width: 50%; /* Takes up half the width of the bottom div */
+        width: 50%; 
         margin:5px 0 0 0;
 
         @media (max-width: 400px) {
@@ -917,7 +925,7 @@ footer {
 
         .twitter-logo,
         .linkedin-logo {
-          margin-left: 20px; /* Adjust as needed */
+          margin-left: 20px; 
         }
       }
     
@@ -952,10 +960,10 @@ footer {
         &:before {
           content: "";
           position: absolute;
-          bottom: 0; // Start from the bottom
+          bottom: 0; 
           left: 0;
           width: 100%;
-          height: 0; // Initial height is 0
+          height: 0; 
           background: linear-gradient(to bottom, $primary, $secondary);
           transition: height 0.5s;
           z-index: -1;
@@ -967,7 +975,7 @@ footer {
           transform: scale(1.07);
   
           &:before {
-              height: 100%; // Fill up on hover
+              height: 100%; 
           }
         }
       }
@@ -982,7 +990,6 @@ footer {
     }
   }
 }
-
 
 .skills-section-overall {
   position:relative;
@@ -1005,14 +1012,14 @@ footer {
     @media (max-width: 1000px) {
       margin:90px 0 20px 0;
       top:30px;
-      left: 50%; /* Center horizontally */
-      transform: translateX(-50%); /* Adjust for the width of the element */
+      left: 50%; 
+      transform: translateX(-50%); 
     }
 
     @media (max-width: 400px) {
       margin:70px 0 20px 0;
-      left: 50%; /* Center horizontally */
-      transform: translateX(-50%); /* Adjust for the width of the element */
+      left: 50%; 
+      transform: translateX(-50%); 
     }
   
     .tagP {
@@ -1029,7 +1036,7 @@ footer {
     position: relative;
     background-color: $background;
     min-height: 100vh;
-    width: 80%; // Set width to 80%
+    width: 80%; 
     left:-25px;
     display: flex;
     flex-direction: column;
@@ -1039,7 +1046,7 @@ footer {
 
     @media (max-width: 1000px) {
       margin-top:10px;
-      width: 100%; // Set width to 100%
+      width: 100%;
     }
 
     &::before {
@@ -1053,13 +1060,13 @@ footer {
     }
 
     .title {
-      font-size: 75px; // Adjust as needed
-      margin: 200px 0 20px 0; // Adjust as needed
+      font-size: 75px; 
+      margin: 200px 0 20px 0; 
       text-align: center;
 
       @media (max-width: 1000px) {
-        margin: 180px 0 20px 0; // Adjust as needed
-        font-size: 3em; // Adjust as needed
+        margin: 180px 0 20px 0; 
+        font-size: 3em; 
       }
     }
 
@@ -1068,10 +1075,10 @@ footer {
       width: 90%;
       display: flex;
       flex-direction: column;
-      gap: 20px; // Add space between dropdowns
+      gap: 20px; 
 
       @media (max-width: 400px) {
-        margin: 20px; // Adjust as needed
+        margin: 20px; 
       }
 
       details {
@@ -1080,8 +1087,8 @@ footer {
         display: flex;
         justify-content: space-between;
         border-radius: 2px;
-        border-left: 3px solid transparent; // Adjust as needed
-        border-bottom: 3px solid transparent; // Adjust as needed
+        border-left: 3px solid transparent; 
+        border-bottom: 3px solid transparent; 
         border-image: linear-gradient(to right, $primary, $secondary);
         border-image-slice: 1;
         margin-bottom: 20px; 
@@ -1092,15 +1099,15 @@ footer {
           flex-direction: column;
           justify-content: space-between;
           cursor: pointer;
-          padding: 0px 10px 10px 10px; // Adjust as needed
+          padding: 0px 10px 10px 10px; 
 
           h3 {
             display:inline-block;
-            font-size: 36px; // Set font size to 36px
-            margin:0; // Adjust as needed
+            font-size: 36px; 
+            margin:0; 
 
             @media (max-width: 1000px) {
-              font-size: 20px; // Adjust as needed
+              font-size: 20px; 
             }
 
             @media (max-width: 400px) {
@@ -1114,12 +1121,12 @@ footer {
           .author {
             font-size: 14px;
             margin: 5px 0 10px 0;
-            background: linear-gradient(to bottom, $primary, $secondary); // Replace with your desired colors
+            background: linear-gradient(to bottom, $primary, $secondary); 
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
 
             @media (max-width: 1000px) {
-              font-size: 12px; // Adjust as needed
+              font-size: 12px; 
             }
           }
   
@@ -1127,7 +1134,7 @@ footer {
             position: relative;
             display: inline-block;
             z-index: 1;
-            color: $background; // Set the color of the text
+            color: $background; 
 
             p{
               display:inline-block;
@@ -1136,7 +1143,7 @@ footer {
               font-weight: 700;
 
               @media (max-width: 500px) {
-                font-size: 10px; // Adjust as needed
+                font-size: 10px; 
               }
             }
           
@@ -1178,11 +1185,10 @@ footer {
               }
             }
           }
-
         }
 
         .dropdown-content {
-          padding: 0px 0 10px 10px; // Adjust as needed
+          padding: 0px 0 10px 10px; 
           display:flex;
           flex-direction:row;
           flex-wrap:nowrap;
@@ -1214,7 +1220,7 @@ footer {
             }
 
             .ui-ux-img{
-              width:180px;
+              width:200px;
               height:auto;
             }
 
