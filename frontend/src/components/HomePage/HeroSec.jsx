@@ -39,8 +39,8 @@ const HeroSec = () => {
         if (distance < 70) {
           return {
             ...star,
-            top: star.top - dy / 20,
-            left: star.left - dx / 20,
+            top: star.top - dy / 30,
+            left: star.left - dx / 30,
           };
         } else {
           return star;
@@ -49,48 +49,60 @@ const HeroSec = () => {
     );
   };
 
+  window.addEventListener('scroll', function() {
+    document.querySelectorAll('.section').forEach(function(section) {
+      var bounding = section.getBoundingClientRect();
+  
+      if (
+        bounding.top >= 0 &&
+        bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+      ) {
+        section.style.opacity = 1 - window.scrollY / (document.body.scrollHeight - window.innerHeight);
+      }
+    });
+  });
+
   return (
     <div className="hero-section-top" onMouseMove={handleMouseMove}>
-      <div className="hero-section">
-        {starPositions.map((star, index) => (
-          <div
-            key={index}
-            className="star"
-            style={{
-              top: `${star.top}px`,
-              left: `${star.left}px`,
-              transform: stars[index].transform,
-              width: `${starSize}px`, // use the constant size
-              height: `${starSize}px`, // use the constant size
-              animationDelay: stars[index].animationDelay,
-              opacity: stars[index].brightness, // use the brightness from the star object
-            }}
-          />
-        ))}
-        <div className="overlay"></div>
-
-        <div className="hero-section__content">
-            <h3 className="hero-subheading top-text">Hi, I am </h3>
-            <h1 className="hero-header">Cameron Jenkins</h1>
-            <TypeAnimation
-            sequence={[
-                'Front-End Developer',
-                1000, 
-                'Back-end Developer',
-                1000,
-                'UI/UX Designer',
-                1000
-            ]}
-            wrapper="span"
-            speed={50}
-            className="bottom-text"
-            repeat={Infinity}
+        <div className="hero-section">
+          {starPositions.map((star, index) => (
+            <div
+              key={index}
+              className="star"
+              style={{
+                top: `${star.top}px`,
+                left: `${star.left}px`,
+                transform: stars[index].transform,
+                width: `${starSize}px`, // use the constant size
+                height: `${starSize}px`, // use the constant size
+                animationDelay: stars[index].animationDelay,
+                opacity: stars[index].brightness, // use the brightness from the star object
+              }}
             />
+          ))}
+          <div className="overlay"></div>
+          <div className="hero-section__content">
+              <h3 className="hero-subheading top-text">Hi, I am </h3>
+              <h1 className="hero-header">Cameron Jenkins</h1>
+              <TypeAnimation
+              sequence={[
+                  'Front-End Developer',
+                  1000, 
+                  'Back-end Developer',
+                  1000,
+                  'UI/UX Designer',
+                  1000
+              ]}
+              wrapper="span"
+              speed={50}
+              className="bottom-text"
+              repeat={Infinity}
+              />
+          </div>
+          <div className="hero-section__scroll" onClick={() => document.getElementById('nextSection').scrollIntoView({ behavior: 'smooth' })}>
+              <img src="../images/dropdown.svg" alt="Scroll Down" />
+          </div>
         </div>
-        <div className="hero-section__scroll" onClick={() => document.getElementById('nextSection').scrollIntoView({ behavior: 'smooth' })}>
-            <img src="../images/dropdown.svg" alt="Scroll Down" />
-        </div>
-      </div>
     </div>
   );
 };

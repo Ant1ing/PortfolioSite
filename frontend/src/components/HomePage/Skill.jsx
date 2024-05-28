@@ -21,6 +21,19 @@ const Skill = () => {
     dropdownRefs.current = dropdownRefs.current.slice(0, isOpen.length);
   }, [isOpen]);
 
+  window.addEventListener('scroll', function() {
+    document.querySelectorAll('.section').forEach(function(section) {
+      var bounding = section.getBoundingClientRect();
+  
+      if (
+        bounding.top >= 0 &&
+        bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+      ) {
+        section.style.opacity = 1 - window.scrollY / (document.body.scrollHeight - window.innerHeight);
+      }
+    });
+  });
+
   return (
     <div className="skills-section-overall">
       <div className="tag">

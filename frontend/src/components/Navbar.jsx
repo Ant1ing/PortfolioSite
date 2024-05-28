@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
 
 function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isButtonOpen, setIsButtonOpen] = useState(false);
 
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
 
@@ -44,29 +42,13 @@ function Navbar() {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
   };
 
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-    setIsButtonOpen(!isButtonOpen);
-  };
 
   return (
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="navbar__links left-aligned">
         <button onClick={() => scrollToSection('aboutMe')}>About Me</button>
         <button onClick={() => scrollToSection('skills')}>Skills</button>
-        <div className={`projects-dropdown ${isDropdownOpen ? 'open' : ''}`}>
-          <button onClick={() => scrollToSection('projects')}>Projects</button>
-          <button className={`dropdown-button ${isButtonOpen ? 'open' : ''}`} onClick={toggleDropdown}>
-            <img src="../images/dropdown.svg" alt="Dropdown" />
-          </button>
-          <div className="dropdown-content">
-            <Link to="/project1">Jo Smith Photography - Portfolio Piece</Link>
-            <Link to="/project2">Empower 786 - Client Work</Link>
-            <Link to="/project3">Body Builder Game - Web Game</Link>
-            <Link to="/project4">Quantum - UI Design</Link>
-            <button onClick={() => scrollToSection('projects')}>View All</button>
-          </div>
-        </div>
+        <button onClick={() => scrollToSection('project')}>Projects</button>
       </div>
       <div className="navbar__logo center-aligned">
         <a href="#">
@@ -83,7 +65,7 @@ function Navbar() {
       <div className={`navbar__links--mobile ${isHamburgerOpen ? 'open' : ''}`} style={{display: isHamburgerOpen ? 'block' : 'none'}}>
         <button onClick={() => scrollToSection('aboutMe')}>About Me</button>
         <button onClick={() => scrollToSection('skills')}>Skills</button>
-        <button onClick={() => scrollToSection('projects')}>Projects</button>
+        <button onClick={() => scrollToSection('project')}>Projects</button>
         <button onClick={() => scrollToSection('contact')}>Contact</button>
       </div>
       <div className="navbar__button right-aligned attention-button">
