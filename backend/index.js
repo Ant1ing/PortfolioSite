@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
+import cors from 'cors'; // Import cors
 
 // Import utility function to connect to the database
 import connectDB from './config/db.js';
@@ -13,7 +14,7 @@ import connectDB from './config/db.js';
 dotenv.config();
 
 // Define the port for the server to listen on
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4000;
 
 // Connect to the database
 connectDB();
@@ -29,6 +30,40 @@ app.use(express.urlencoded({extended: true}));
 
 // Middleware to parse cookies
 app.use(cookieParser());
+
+// Use cors middleware
+app.use(cors()); // Use cors
+
+// Define a Mongoose schema for the responses
+const responseSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  message: String,
+});
+
+// Define a Mongoose model for the responses
+const Response = mongoose.model('Response', responseSchema);
+
+// Define a route to handle form submissions
+app.post('/submit', async (req, res) => {
+  try {
+    const { name, email, message } = req.body;
+
+    // Connect to the database
+    const db = await connectDB();
+
+    // Insert the form data into the database
+    const [result] = await db.execute(
+      'INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)',
+      [name, email, message]
+    );
+
+    res.json({ message: 'Form submitted successfully' });
+  } catch (error) {
+    console.error('Error submitting form', error);
+    res.status(500).json({ message: 'Error submitting form' });
+  }
+});
 
 // Define a route that sends "Hello World" as a response
 app.get("/", (req, res) => {

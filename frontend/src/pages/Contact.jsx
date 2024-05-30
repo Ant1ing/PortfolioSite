@@ -1,16 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom'; // import useLocation
-import HeroSec from "../components/HomePage/HeroSec";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/ContactPage/NavbarContact";
 import CVDownload from "../components/CVDownload";
-import Footer from "../components/Footer";
-import AboutMe from "../components/HomePage/AboutMe";
-import Skill from "../components/HomePage/Skill";
-import Projects from "../components/HomePage/ProjectsSec";
-import TestimonialSlider from "../components/HomePage/Testimonials";
+import Footer from "../components/ContactPage/FooterContact";
+import HeroSec from "../components/ContactPage/HeroSecContact";
 import { TypeAnimation } from 'react-type-animation';
+import ContactForm from '../components/ContactPage/ContactForm';
 
-const HomePage = () => {
+const Contact = () => {
   const [loading, setLoading] = useState(true);
   const [firstVisit, setFirstVisit] = useState(false);
   const location = useLocation(); 
@@ -43,7 +40,7 @@ const HomePage = () => {
         {firstVisit ? (
           <TypeAnimation
             cursor={true}
-            sequence={['Welcome to my portfolio', 100, 'Loading...', 500]}
+            sequence={['Welcome to my portfolio', 500, 'Loading...', 500]}
             wrapper="h1"
           />
         ) : (
@@ -52,28 +49,17 @@ const HomePage = () => {
       </div>
       <>
         <Navbar />
-        <CVDownload />
         <HeroSec />
-        <section id="aboutMe">
+        <section id="reachMe">
           <div id="nextSection">
-            <AboutMe />
+            <ContactForm />
           </div>
         </section>
-        <section id="skills">
-          <div id="nextSection">
-            <Skill />
-          </div>
-        </section>
-        <section id="project">
-          <div id="nextSection">
-            <Projects />
-          </div>
-        </section>
-        <TestimonialSlider />
+        <CVDownload />
         <Footer />
       </>
     </div>
   );
 };
 
-export default HomePage;
+export default Contact;

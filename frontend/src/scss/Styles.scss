@@ -19,6 +19,23 @@ $starry-background-color: #252323;
     box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+  width: 7px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: $foreground; /* Color of the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: $seperators; /* Color of the scroll thumb */
+  border-radius: 2px; /* Radius of the scroll thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $primary; /* Color of the scroll thumb when hovered */
+}
+
 body {
     font-family: 'Raleway', sans-serif;
     color:$text;
@@ -26,12 +43,31 @@ body {
     padding: 0;
     background-color: $background;
     scroll-behavior: smooth;
+    overflow-x: hidden;
 
     .header-highlight {
       background: linear-gradient(to bottom, $primary, $secondary);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
+    }
+
+    @keyframes slideIn {
+      0% {
+        top: -60px; /* Start out of view */
+      }
+      100% {
+        top: 110px; /* End in view */
+      }
+    }
+    
+    @keyframes slideOut {
+      0% {
+        top: 110px; /* Start in view */
+      }
+      100% {
+        top: -60px; /* End out of view */
+      }
     }
 
     .loading-screen {
@@ -47,14 +83,34 @@ body {
       text-align: center;
       transition: transform 0.5s ease-in-out;
       z-index: 9999;
+
+      img {
+        width:50px;
+        height:auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        animation: slide-up 0.5s forwards;
+      }
+      
+      @keyframes slide-up {
+        0% {
+          transform: translate(-50%, 100%);
+          opacity: 0;
+        }
+        100% {
+          transform: translate(-50%, -50%);
+          opacity: 1;
+        }
+      }
     }
     
-    .slide-down {
+    .hidden{
       transform: translateY(100%);
     }
 }
-
-
 
 
 // General Styles for components outwith certain pages.
@@ -177,7 +233,8 @@ body {
         box-sizing: border-box;
         transition: transform 0.3s ease-in-out;
 
-        button {
+
+          button {
             font-family: 'Raleway', sans-serif;
             color:$text;
             border:none;
@@ -199,6 +256,10 @@ body {
               height: 1px;
               background: radial-gradient(circle at center, $seperators, $foreground);
             }
+          }
+          .page-link{
+            color:$accent;
+            text-decoration: none;
           }
 
         &.open {
@@ -277,6 +338,11 @@ body {
 
           .email-icon{
             margin-left:10px;
+            font-size:15px;
+          }
+
+          .arrow-icon{
+            margin-right:10px;
             font-size:15px;
           }
     
@@ -384,6 +450,11 @@ footer {
       justify-content: space-around;
       align-items: center;
       flex-wrap: wrap;
+
+      .page-link{
+        color:$accent;
+        text-decoration: none;
+      }
 
       button {
         margin: 20px 10px 30px 10px;
@@ -524,10 +595,7 @@ footer {
 
       .top-text {
         font-weight:700;
-        position:absolute;
-        top: 38%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        
 
         @media (max-width: 1000px) {
           position:initial;
@@ -577,21 +645,21 @@ footer {
         }
       }
 
-      .hero-section__scroll{
-        z-index: 3;
-        position: absolute;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 1.5em;
-        color: $text;
-        cursor: pointer;
-        animation: scroll 1s infinite;
-        transition: color 0.3s ease-in-out;
+    .hero-section__scroll{
+      z-index: 3;
+      position: absolute;
+      bottom: 20px;
+      left: 49%;
+      transform: translateX(-50%);
+      font-size: 1.5em;
+      color: $text;
+      cursor: pointer;
+      animation: scroll 1s infinite;
+      transition: color 0.3s ease-in-out;
 
-        @media (max-width: 1000px) {
-          left:48%;
-        }
+      @media (max-width: 1000px) {
+        left:48%;
+      }
     }
   }
 }
@@ -1056,6 +1124,7 @@ footer {
             margin: 5px 0 10px 0;
             background: linear-gradient(to bottom, $primary, $secondary); 
             -webkit-background-clip: text;
+            background-clip:text;
             -webkit-text-fill-color: transparent;
 
             @media (max-width: 1000px) {
@@ -1456,6 +1525,11 @@ footer {
     align-items: center;
     padding: 20px;
     background: radial-gradient(circle at 50% 50%, rgba($foreground,0.5), $background 75%);
+    transition: transform 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.1);
+    }
 
     .testimonial-header{
       font-size: 20px;
@@ -1504,7 +1578,7 @@ footer {
           width: 50px;
           height: 50px;
           border-radius: 50%;
-          margin:10px 10px auto 0;
+          margin:0 15px 0 0;
         }
       }
 
@@ -1523,10 +1597,11 @@ footer {
         }
 
         .company {
-          font-size: 12px;
+          font-size: 14px;
           font-weight: 400;
           background: linear-gradient(to right, $primary, $secondary);
           -webkit-background-clip: text;
+          background-clip: text;
           -webkit-text-fill-color: transparent;
         }
       }
@@ -1563,6 +1638,234 @@ footer {
     }
     100% {
         transform: translateX(calc(-250px * 9));
+    }
+  }
+}
+
+// Styles for contact page only
+
+.contact-page {
+  position:relative;
+  min-height:100vh;
+
+  .success-message {
+    position: fixed;
+    top: -60px; /* Start out of view */
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    padding:10px;
+    margin:auto;
+    height: 50px;
+    background: $accent;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000;
+  
+    span{
+      margin-left:10px;
+    }
+  
+    &.visible {
+      animation: slideIn 0.5s forwards; /* Slide in */
+    }
+  
+    &:not(.visible) {
+      animation: slideOut 0.5s forwards; /* Slide out */
+    }
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 1px;
+    background: radial-gradient(circle at center, $seperators, $background);
+  }
+
+  .tag {
+    display:inline-block;
+    position: relative;
+    top: 115px;
+    left: 100px;
+    background: linear-gradient(to bottom, $primary, $secondary);
+    padding: 3px;
+    border-radius: 2px;
+    margin: 0;
+    z-index:1;
+    height:17px;
+
+    @media (max-width: 1000px) {
+      margin:90px 0 20px 0;
+      top:30px;
+      left: 50%; 
+      transform: translateX(-50%); 
+    }
+
+    @media (max-width: 400px) {
+      margin:70px 0 20px 0;
+      left: 50%; 
+      transform: translateX(-50%); 
+    }
+  
+    .tagP {
+      font-family: 'Raleway', sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      margin: 0;
+      color: $background;
+      text-wrap: nowrap;
+    }
+  }
+
+  .contact-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 170px auto;
+    width: 50%;
+
+    @media (max-width: 1000px) {
+      width: 80%;
+      margin:0 auto 70px auto;
+    }
+
+    .header {
+      text-align: center;
+      font-size: 50px;
+      margin:0;
+
+      h1{
+        margin:0;
+
+        @media (max-width: 1000px) {
+          margin-top:40px;
+        }
+      }
+    }
+
+    .infos{
+      margin-top:30px;
+      display:flex;
+      flex-direction: column;
+      align-items: center;
+
+      .Desc{
+        font-size: 16px;
+        margin: 0 0 20px 0;
+        text-align: center;
+
+        @media (max-width: 1000px) {
+          margin: -20px 0 20px 0;
+        }
+      }
+
+      .form-container {
+        width:100%;
+
+        @media (max-width: 1000px) {
+          margin:0;
+          display:flex;
+          flex-direction: column;
+          text-align: center;
+
+        }
+
+        .contactForm{
+          @media (max-width: 1000px) {
+            width:100%;
+            margin:0;
+          }
+        }
+
+        .read-more {
+          font-family: 'Raleway', sans-serif;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          position: relative;
+          background: transparent;
+          border: 2px solid;
+          border-image-slice: 1;
+          border-image-source: linear-gradient(to bottom, $primary, $secondary);
+          color: $text;
+          padding: 10px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          cursor: pointer;
+          overflow: hidden;
+          transition:transform 0.3s ease-in-out;
+          margin:0;
+          
+
+          @media (max-width: 1000px) {
+            margin:0;
+            text-align:center;
+          }
+
+          .button-text{
+            margin-right:10px;
+          }
+
+          &:before {
+            content: "";
+            position: absolute;
+            bottom: 0; 
+            left: 0;
+            width: 100%;
+            height: 0; 
+            background: linear-gradient(to bottom, $primary, $secondary);
+            transition: height 0.5s;
+            z-index: -1;
+          }
+    
+          &:hover {
+            font-family: 'Raleway', sans-serif;
+            color: $text-hover-light;
+            transform: scale(1.07);
+    
+            &:before {
+                height: 100%; 
+            }
+          }
+        }
+
+        .input-field {
+          margin-bottom: 20px;
+
+          label {
+            display: block;
+            margin-bottom: 5px;
+          }
+
+          input {
+            position: relative;
+            width: 100%;
+            padding: 10px;
+            color:$text;
+            background: $foreground;
+            border: 1px solid $accent;
+          }
+
+          textarea {
+            position: relative;
+            width: 100%;
+            background: $foreground;
+            color:$text;
+            border: 1px solid $accent;
+            resize: none;
+            height: 120px;
+          }
+        }
+      }
     }
   }
 }

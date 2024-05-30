@@ -54,8 +54,8 @@ function AboutMe() {
                         </a>
                     </div>
                     <div className="navbar__button right-aligned">
-                        <Link to="/aboutme" className="read-more">
-                            <span className="button-text">View More</span>
+                        <Link to="/contact" className="read-more">
+                            <span className="button-text">Contact Me</span>
                             <FontAwesomeIcon icon={faArrowRight} />
                         </Link>
                     </div>

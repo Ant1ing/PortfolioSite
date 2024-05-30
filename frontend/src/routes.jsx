@@ -3,6 +3,7 @@ import { useLocation, BrowserRouter as Router, Route, Routes } from 'react-route
 
 // pages
 import HomePage from './pages/HomePage';
+import Contact from './pages/Contact';
 
 
 function ScrollToTop() {
@@ -21,6 +22,7 @@ function RoutesComponent() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>
   );

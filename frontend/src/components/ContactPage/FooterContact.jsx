@@ -20,11 +20,9 @@ const Footer = () => {
       </div>
 
         <div className="links-section">
-          <button onClick={() => scrollToSection('aboutMe')}>About Me</button>
-          <button onClick={() => scrollToSection('skills')}>Skills</button>
-          <button onClick={() => scrollToSection('projects')}>Projects</button>
-          <Link to="/contact">
-            <button className="page-link">Contact</button>
+          <button onClick={() => scrollToSection('reachMe')}>Reach Me</button>
+          <Link to="/">
+            <button className="page-link">Back Home</button>
           </Link>
         </div>
 

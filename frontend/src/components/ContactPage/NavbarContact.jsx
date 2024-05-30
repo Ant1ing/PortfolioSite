@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
 function Navbar() {
@@ -47,9 +47,7 @@ function Navbar() {
   return (
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="navbar__links left-aligned">
-        <button onClick={() => scrollToSection('aboutMe')}>About Me</button>
-        <button onClick={() => scrollToSection('skills')}>Skills</button>
-        <button onClick={() => scrollToSection('project')}>Projects</button>
+        <button onClick={() => scrollToSection('reachMe')}>Reach Me</button>
       </div>
       <div className="navbar__logo center-aligned">
         <a href="#">
@@ -64,21 +62,19 @@ function Navbar() {
         </div>
       </div>
       <div className={`navbar__links--mobile ${isHamburgerOpen ? 'open' : ''}`} style={{display: isHamburgerOpen ? 'block' : 'none'}}>
-        <button onClick={() => scrollToSection('aboutMe')}>About Me</button>
-        <button onClick={() => scrollToSection('skills')}>Skills</button>
-        <button onClick={() => scrollToSection('project')}>Projects</button>
-        <Link to="/contact">
-            <button className="page-link">Contact</button>
+        <button onClick={() => scrollToSection('skills')}>Reach Me</button>
+        <Link to="/">
+            <button className="page-link">Back Home</button>
         </Link>
       </div>
       <div className="navbar__button right-aligned attention-button">
-        <Link to="/contact">
-          <button className="attention-button">
-            <span>Contact</span>
-            <FontAwesomeIcon icon={faEnvelope} className="email-icon" />
-          </button>
+        <Link to="/">
+            <button className="attention-button">
+            <FontAwesomeIcon icon={faArrowLeft} className="arrow-icon" />
+            <span>Back Home</span>
+            </button>
         </Link>
-      </div>
+    </div>
     </nav>
   );
 }
